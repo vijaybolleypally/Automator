@@ -11,18 +11,18 @@ import selenium.actions.LeftNavAction;
  */
 public class TestClass1 {
 
+    WebDriver driver = new FirefoxDriver();
     HomePage homePage;
     String sUrl= "http://www.cleartrip.com";
     LeftNavAction leftNavAction;
 
     @Test
     public void myTest1(){
-        homePage = new HomePage(new FirefoxDriver());
+        homePage = new HomePage(driver);
         homePage.gotoHome(sUrl);
         leftNavAction = homePage.goControlToLeftAction();
         leftNavAction.isHeaderExistByName("Search flights");
         leftNavAction.clickOnGivenHeader("hotelApp","Search for hotels");
-//        leftNavAction.clickOnGivenHeader("hotelApp","Search for hotels");
     }
 
 }

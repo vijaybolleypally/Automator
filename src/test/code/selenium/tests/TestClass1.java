@@ -2,27 +2,57 @@ package selenium.tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import selenium.actions.HomePage;
-import selenium.actions.LeftNavAction;
+import selenium.pageactions.FlightResultPage;
+import selenium.pageactions.FlightsPage;
+import selenium.pageactions.HotelsPage;
+
 
 /**
- * Created by t_bollv on 22/11/15.
+ * Created by vijayb on 12/29/2014.
  */
 public class TestClass1 {
 
     WebDriver driver = new FirefoxDriver();
-    HomePage homePage;
-    String sUrl= "http://www.cleartrip.com";
-    LeftNavAction leftNavAction;
+    FlightsPage flightsPage;
+    HotelsPage hotelsPage;
+    FlightResultPage flightResultPage;
+    String[] flightDetails = {"Hyd","Bangalore","12/12/2015","3","2","1"};
 
     @Test
-    public void myTest1(){
-        homePage = new HomePage(driver);
-        homePage.gotoHome(sUrl);
-        leftNavAction = homePage.goControlToLeftAction();
-        leftNavAction.isHeaderExistByName("Search flights");
-        leftNavAction.clickOnGivenHeader("hotelApp","Search for hotels");
+    void gotoflightTrip()
+    {
+        flightsPage = new FlightsPage(driver);
+        flightsPage.goToGivenURL();
+        flightsPage.verifyFlightsPage();
+        flightsPage.enterFlightDetails(flightDetails);
+        flightResultPage = flightsPage.clickSearchflights();
+        flightResultPage.verifyFlightResultPage();
     }
 
+    @Test
+    public void checkNavigation()
+    {
+        flightsPage = new FlightsPage(driver);
+        flightsPage.goToGivenURL();
+        flightsPage.verifyFlightsPage();
+        hotelsPage = flightsPage.navigateToHotelsPage();
+        hotelsPage.verifyHotelsPage();
+        flightsPage =hotelsPage.navigateToFlightsPage();
+        flightsPage.verifyFlightsPage();
+    }
+
+    @AfterMethod
+    public void clearCookies()
+    {
+        driver.manage().deleteAllCookies();
+    }
+
+    @AfterClass
+    public void closeAll()
+    {
+        driver.quit();
+    }
 }

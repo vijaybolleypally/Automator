@@ -1,10 +1,8 @@
 package selenium.tests;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import selenium.config.Configuration;
 import selenium.pageactions.FlightResultPage;
 import selenium.pageactions.FlightsPage;
 import selenium.pageactions.HotelsPage;
@@ -15,15 +13,22 @@ import selenium.pageactions.HotelsPage;
  */
 public class TestClass1 {
 
-    WebDriver driver = new FirefoxDriver();
+    Configuration config;
+    WebDriver driver;
     FlightsPage flightsPage;
     HotelsPage hotelsPage;
     FlightResultPage flightResultPage;
-    String[] flightDetails = {"Hyd","Bangalore","12/12/2015","3","2","1"};
+    String[] flightDetails = {"Hyd", "Bangalore", "12/12/2015", "3", "2", "1"};
+
+    @BeforeClass
+    void createConfiguration() throws Exception {
+        config = new Configuration();
+        driver = config.createDriverFromConfig();
+    }
 
     @Test
-    void gotoflightTrip()
-    {
+    void gotoflightTrip() {
+        driver.get("http://www.cleartrip.com/");
         flightsPage = new FlightsPage(driver);
         flightsPage.goToGivenURL();
         flightsPage.verifyFlightsPage();
@@ -33,26 +38,23 @@ public class TestClass1 {
     }
 
     @Test
-    public void checkNavigation()
-    {
+    public void checkNavigation() {
         flightsPage = new FlightsPage(driver);
         flightsPage.goToGivenURL();
         flightsPage.verifyFlightsPage();
         hotelsPage = flightsPage.navigateToHotelsPage();
         hotelsPage.verifyHotelsPage();
-        flightsPage =hotelsPage.navigateToFlightsPage();
+        flightsPage = hotelsPage.navigateToFlightsPage();
         flightsPage.verifyFlightsPage();
     }
 
     @AfterMethod
-    public void clearCookies()
-    {
+    public void clearCookies() {
         driver.manage().deleteAllCookies();
     }
 
     @AfterClass
-    public void closeAll()
-    {
+    public void closeAll() {
         driver.quit();
     }
 }

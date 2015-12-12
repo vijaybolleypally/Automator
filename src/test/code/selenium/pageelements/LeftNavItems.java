@@ -5,7 +5,7 @@ package selenium.pageelements;
  */
 public class LeftNavItems {
 
-    public String flightstab = ".navGroup.proctNavdu li.flightApp";
+    public String flightstab = ".navGroup.productNav li.flightApp";
     public String hotelstab = ".navGroup.productNav li.hotelApp";
     public String trainstab = ".navGroup.productNav li.trainsApp";
     public String bussestab = ".navGroup.productNav li.busApp.hideB2B";

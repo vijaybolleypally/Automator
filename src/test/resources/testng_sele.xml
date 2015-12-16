@@ -1,0 +1,8 @@
+<suite name="SeleniumTestClass1">
+    <test name="TestName1">
+        <classes>
+            <class name="selenium.tests.TestClass1"/>
+        </classes>
+    </test>
+</suite>
+

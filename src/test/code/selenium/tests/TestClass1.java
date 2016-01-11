@@ -18,7 +18,7 @@ public class TestClass1 {
     FlightsPage flightsPage;
     HotelsPage hotelsPage;
     FlightResultPage flightResultPage;
-    String[] flightDetails = {"Hyd", "Bangalore", "12/12/2015", "3", "2", "1"};
+    String[] flightDetails = {"Hyd", "Bangalore", "12/12/2016", "3", "2", "1"};
 
     @BeforeClass
     void createConfiguration() throws Exception {

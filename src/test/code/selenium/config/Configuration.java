@@ -8,9 +8,7 @@ import selenium.lib.AccessPropertiesFile;
  * Created by t_bollv on 12/12/15.
  */
 public class Configuration {
-    //String configFilePath = "/Users/t_bollv/Documents/code-v/Automator/src/test/resources/resources1/configMe.properties";
-//String configFilePath = "../src/test/resources/resources1/configMe.properties";
-    String configFilePath = "D:\\codev\\Automator\\src\\test\\resources\\resources1\\configMe.properties";
+    String configFilePath = System.getProperty("user.dir")+"/src/test/resources/resources1/configMe.properties".replace("/",System.getProperty("file.separator"));
     public AccessPropertiesFile configFileObj;
     WebDriver driver;
 

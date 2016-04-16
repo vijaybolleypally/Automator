@@ -28,11 +28,15 @@ public class TestClass1 {
         accessJsonFile = new AccessJsonFile();
     }
 
+    @BeforeMethod
+    void goToBaseUrl(){
+        driver.get(accessJsonFile.getString("baseUrl"));
+        driver.manage().window().maximize();
+    }
+
     @Test
     void gotoflightTrip() {
-        driver.get(accessJsonFile.getString("baseUrl"));
         flightsPage = new FlightsPage(driver);
-        flightsPage.goToGivenURL();
         flightsPage.verifyFlightsPage();
         flightsPage.enterFlightDetails(accessJsonFile.getInnerJson("flightDetails"));
         flightResultPage = flightsPage.clickSearchflights();
@@ -42,7 +46,6 @@ public class TestClass1 {
     @Test
     public void checkNavigation() {
         flightsPage = new FlightsPage(driver);
-        flightsPage.goToGivenURL();
         flightsPage.verifyFlightsPage();
         hotelsPage = flightsPage.navigateToHotelsPage();
         hotelsPage.verifyHotelsPage();

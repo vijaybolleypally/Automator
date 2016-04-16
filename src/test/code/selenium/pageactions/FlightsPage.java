@@ -29,15 +29,11 @@ public class FlightsPage {
 
     LeftNavItems leftNavItems = new LeftNavItems();
 
-    public String sURL = "http://www.cleartrip.com";
     public String flightsHeader = ".//h1[contains(text(),'Search flights')]";
     public String searchflightsbtn = "#SearchBtn";
     public String tagwithid = "#%s";
 
-    public void goToGivenURL() {
-        driver.get(sURL);
-        driver.manage().window().maximize();
-    }
+
 
     public void verifyFlightsPage() {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(flightsHeader)));

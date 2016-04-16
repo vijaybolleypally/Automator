@@ -7,7 +7,7 @@ import java.util.Properties;
  * Created by t_bollv on 12/12/15.
  */
 public class AccessPropertiesFile {
-    Properties properties;
+    public Properties properties;
 
     public AccessPropertiesFile(String filePath) throws IOException {
         properties = new Properties();

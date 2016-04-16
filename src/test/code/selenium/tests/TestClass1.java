@@ -23,7 +23,7 @@ public class TestClass1 {
     @BeforeClass
     void createConfiguration() throws Exception {
         config = new Configuration();
-        driver = config.createDriverFromConfig();
+        driver = config.createDriver();
     }
 
     @Test

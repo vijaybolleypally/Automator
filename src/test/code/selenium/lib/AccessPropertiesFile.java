@@ -11,8 +11,8 @@ public class AccessPropertiesFile {
 
     public AccessPropertiesFile(String filePath) throws IOException {
         properties = new Properties();
-        InputStream inputStream = new FileInputStream(filePath);
-        properties.load(inputStream);
+        BufferedInputStream fileData = new BufferedInputStream(new FileInputStream(filePath));
+        properties.load(fileData);
     }
 
     public String getPropValues(String keyValue) {

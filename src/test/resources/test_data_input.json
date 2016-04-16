@@ -1,0 +1,11 @@
+{
+  "flightDetails": {
+    "from": "Hyd",
+    "to": "Bangalore",
+    "doj": "12/12/2016",
+    "adults": "3",
+    "childrens": "2",
+    "infants": "1"
+  },
+  "baseUrl": "http://www.cleartrip.com/"
+}

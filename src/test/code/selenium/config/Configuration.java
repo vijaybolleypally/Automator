@@ -14,13 +14,14 @@ public class Configuration {
     private String projectNameDirectory = System.getProperty("user.dir");
     private String configFilePath = projectNameDirectory + "/src/test/resources/SeleniumConfig.properties".replace("/", fileSeparatot);
     private AccessPropertiesFile configFileObj;
+
     public WebDriver driver;
 
     public Configuration() throws Exception {
         configFileObj = new AccessPropertiesFile(configFilePath);
     }
 
-    public WebDriver createDriverFromConfig() {
+    public WebDriver createDriver() {
         String requiredDriverValue = configFileObj.getPropValues("browser");
 
         if (requiredDriverValue.equalsIgnoreCase("firefox")) {

@@ -3,6 +3,7 @@ package selenium.tests;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import selenium.config.Configuration;
+import selenium.lib.AccessJsonFile;
 import selenium.pageactions.FlightResultPage;
 import selenium.pageactions.FlightsPage;
 import selenium.pageactions.HotelsPage;
@@ -13,26 +14,27 @@ import selenium.pageactions.HotelsPage;
  */
 public class TestClass1 {
 
-    Configuration config;
-    WebDriver driver;
-    FlightsPage flightsPage;
-    HotelsPage hotelsPage;
-    FlightResultPage flightResultPage;
-    String[] flightDetails = {"Hyd", "Bangalore", "12/12/2016", "3", "2", "1"};
+    public Configuration config;
+    public WebDriver driver;
+    public FlightsPage flightsPage;
+    public HotelsPage hotelsPage;
+    public FlightResultPage flightResultPage;
+    public AccessJsonFile accessJsonFile;
 
     @BeforeClass
     void createConfiguration() throws Exception {
         config = new Configuration();
-        driver = config.createDriverFromConfig();
+        driver = config.createDriver();
+        accessJsonFile = new AccessJsonFile();
     }
 
     @Test
     void gotoflightTrip() {
-        driver.get("http://www.cleartrip.com/");
+        driver.get(accessJsonFile.getString("baseUrl"));
         flightsPage = new FlightsPage(driver);
         flightsPage.goToGivenURL();
         flightsPage.verifyFlightsPage();
-        flightsPage.enterFlightDetails(flightDetails);
+        flightsPage.enterFlightDetails(accessJsonFile.getInnerJson("flightDetails"));
         flightResultPage = flightsPage.clickSearchflights();
         flightResultPage.verifyFlightResultPage();
     }

@@ -1,5 +1,6 @@
 package selenium.pageactions;
 
+import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -49,14 +50,14 @@ public class FlightsPage {
         return new HotelsPage(getDriver());
     }
 
-    public void enterFlightDetails(String[] flightDetailsList) {
+    public void enterFlightDetails(JSONObject flightDetailsList) {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(String.format(tagwithid, "FromTag"))));
-        driver.findElement(By.cssSelector(String.format(tagwithid, "FromTag"))).sendKeys(flightDetailsList[0]);
-        driver.findElement(By.cssSelector(String.format(tagwithid, "ToTag"))).sendKeys(flightDetailsList[1]);
-        driver.findElement(By.cssSelector(String.format(tagwithid, "DepartDate"))).sendKeys(flightDetailsList[2]);
-        driver.findElement(By.cssSelector(String.format(tagwithid, "Adults"))).sendKeys(flightDetailsList[3]);
-        driver.findElement(By.cssSelector(String.format(tagwithid, "Childrens"))).sendKeys(flightDetailsList[4]);
-        driver.findElement(By.cssSelector(String.format(tagwithid, "Infants"))).sendKeys(flightDetailsList[5]);
+        driver.findElement(By.cssSelector(String.format(tagwithid, "FromTag"))).sendKeys(flightDetailsList.get("from").toString());
+        driver.findElement(By.cssSelector(String.format(tagwithid, "ToTag"))).sendKeys(flightDetailsList.get("to").toString());
+        driver.findElement(By.cssSelector(String.format(tagwithid, "DepartDate"))).sendKeys(flightDetailsList.get("doj").toString());
+        driver.findElement(By.cssSelector(String.format(tagwithid, "Adults"))).sendKeys(flightDetailsList.get("adults").toString());
+        driver.findElement(By.cssSelector(String.format(tagwithid, "Childrens"))).sendKeys(flightDetailsList.get("childrens").toString());
+        driver.findElement(By.cssSelector(String.format(tagwithid, "Infants"))).sendKeys(flightDetailsList.get("infants").toString());
     }
 
     public FlightResultPage clickSearchflights() {

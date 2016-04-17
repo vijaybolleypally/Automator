@@ -5,15 +5,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import selenium.pageelements.LeftNavItems;
-
-import java.util.ArrayList;
-import java.util.List;
+import selenium.pageelements.FlightsPageElements;
+import selenium.pageelements.LeftNavElements;
 
 /**
  * Created by vijayb on 12/29/2014.
  */
-public class FlightsPage {
+public class FlightsPage implements FlightsPageElements, LeftNavElements {
 
     WebDriver driver;
     WebDriverWait wait;
@@ -27,22 +25,15 @@ public class FlightsPage {
         return driver;
     }
 
-    LeftNavItems leftNavItems = new LeftNavItems();
-
-    public String flightsHeader = ".//h1[contains(text(),'Search flights')]";
-    public String searchflightsbtn = "#SearchBtn";
-    public String tagwithid = "#%s";
-
-
 
     public void verifyFlightsPage() {
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(flightsHeader)));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(flightsHeader));
 
     }
 
     public HotelsPage navigateToHotelsPage() {
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(leftNavItems.hotelstab)));
-        driver.findElement(By.cssSelector(leftNavItems.hotelstab)).click();
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(hotelstab));
+        driver.findElement(hotelstab).click();
         return new HotelsPage(getDriver());
     }
 
@@ -57,8 +48,8 @@ public class FlightsPage {
     }
 
     public FlightResultPage clickSearchflights() {
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(searchflightsbtn)));
-        driver.findElement(By.cssSelector(searchflightsbtn)).click();
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(searchflightsbtn));
+        driver.findElement(searchflightsbtn).click();
         return new FlightResultPage(getDriver());
     }
 }

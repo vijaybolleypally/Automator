@@ -4,11 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import selenium.pageelements.FlightResultPageElements;
 
 /**
  * Created by vijayb on 12/31/2014.
  */
-public class FlightResultPage {
+public class FlightResultPage implements FlightResultPageElements {
 
     WebDriver driver;
     WebDriverWait wait;
@@ -22,10 +23,9 @@ public class FlightResultPage {
         return driver;
     }
 
-    public String searchsummaryheader = ".searchSummary";
 
     public void verifyFlightResultPage() {
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(searchsummaryheader)));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(searchsummaryheader));
     }
 
 }

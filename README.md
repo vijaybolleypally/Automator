@@ -1,4 +1,4 @@
 # Automator
-Tests Automation FrameWork
+Browser Automation Framework made of Selenium with Java,TestNG and Maven 
 
-New Frame work with Selenium  and Geb 
+In-progress Not ready for version 1.0 will come in very soon

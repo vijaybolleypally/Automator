@@ -1,7 +1,7 @@
 <suite name="TestSuiteName1">
     <test name="TestName1">
         <classes>
-            <class name="geb.tests.TestClass2"/>
+            <class name="selenium.tests.TestClass1"/>
         </classes>
     </test>
 </suite>
